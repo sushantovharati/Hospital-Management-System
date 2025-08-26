@@ -1,22 +1,23 @@
 /* banner related styles */
-.banner{
+.banner,
+main {
     max-width: 1440px;
     margin: 0 auto;
 }
 
-.banner-content{
+.banner-content {
     max-width: 850px;
     margin: 0 auto;
     text-align: center;
 }
 
-.banner-title{
+.banner-title {
     font-weight: 700;
     font-size: 4rem;
     color: rgba(51, 51, 51, 1);
 }
 
-.banner-description{
+.banner-description {
     padding-bottom: 20px;
     text-align: justify;
     text-align-last: center;
@@ -24,7 +25,50 @@
     color: rgba(51, 51, 51, 1);
 }
 
-.banner-image{
+.banner-image {
     width: 100%;
     height: 700px;
+}
+
+/* main section styles */
+/* .buttons{
+    justify-content: space-between;
+}
+button{
+    width: 270px;
+    height: 150px;
+} */
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    /* flex-wrap: wrap;  */
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.buttons button {
+    width: 350px;
+    height: 100px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 20px;
+    font-size: 25px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+    color: #ffffff;
+}
+
+.find-doctor,
+.appointment {
+    background-color: rgba(13, 59, 102, 1);
+}
+
+.reports,
+.query {
+    background-color: rgba(1, 100, 50, 1);
+}
+
+.buttons button:hover {
+    background-color: rgba(255, 144, 14, 1);
 }
