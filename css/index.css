@@ -31,18 +31,9 @@ main {
 }
 
 /* main section styles */
-/* .buttons{
-    justify-content: space-between;
-}
-button{
-    width: 270px;
-    height: 150px;
-} */
-
 .buttons {
     display: flex;
     justify-content: center;
-    /* flex-wrap: wrap;  */
     gap: 15px;
     margin: 25px 0;
 }
@@ -60,7 +51,7 @@ button{
 }
 
 .find-doctor,
-.appointment {
+.book-an-appointment {
     background-color: rgba(13, 59, 102, 1);
 }
 
@@ -71,4 +62,71 @@ button{
 
 .buttons button:hover {
     background-color: rgba(255, 144, 14, 1);
+}
+
+/* medical-experts section styles */
+.doctors-section {
+    text-align: center;
+}
+
+.doctor-list-title {
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.doctors-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.doctor-card{
+    border: 2px solid rgba(13, 59, 102, 1);
+}
+
+.doctor-card img{
+    width: 40%;
+    height: 220px;
+}
+
+.doctor-info{
+    width: 60%;
+    margin: 15px 0px 15px 10px;
+    font-size: 25px;
+    text-align: left;
+}
+
+.doctor-info p{
+    font-size: 18px;
+}
+
+.book-btn{
+    margin: 5px auto;
+    height: 40px;
+    width: 200px;
+    background-color: rgba(13,59,102,1);
+    color: rgba(255,255,255,1);
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.book-btn:hover{
+     background-color: rgba(255, 144, 14, 1);
+}
+.view-all-doctors {
+    width: 100%;
+    margin: 10px auto;
+    margin-top: 5px;
+    background-color: rgba(0, 119, 182, 1);
+    color: rgba(255, 255, 255, 1);
+    font-size: 25px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.view-all-doctors:hover {
+    background-color: rgba(0, 150, 199, 1);
 }
