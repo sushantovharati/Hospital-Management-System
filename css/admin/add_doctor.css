@@ -1,0 +1,139 @@
+.add-doctor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.form-group {
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.buttons button {
+    width: 200px;
+    /* width: 100%; */
+    padding: 10px 25px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: #059833;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.buttons button:hover {
+    background-color: #047527;
+}
+
+.doctor-profile {
+    margin-top: 40px;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.doctor-profile h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.doctor-profile label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.doctor-list-section {
+    margin-top: 40px;
+}
+
+.doctor-list-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.doctor-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+}
+
+.doctor-table th,
+.doctor-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.doctor-table th {
+    background-color: #0077b6;
+    color: white;
+    font-size: 16px;
+}
+
+.doctor-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.doctor-table tr:hover {
+    background-color: #e0f7fa;
+}
+
+.doctor-table button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    background-color: #0077b6;
+    transition: background-color 0.3s;
+}
+
+.doctor-table button:hover {
+    background-color: #0096c7;
+}
+
+/* Doctor Table - Action Buttons */
+.doctor-table .edit-btn {
+    background-color: #28a745;
+}
+
+.doctor-table .edit-btn:hover {
+    background-color: #218838;
+}
+
+.doctor-table .delete-btn {
+    background-color: #dc3545;
+}
+
+.doctor-table .delete-btn:hover {
+    background-color: #c82333;
+}
