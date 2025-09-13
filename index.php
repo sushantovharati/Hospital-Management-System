@@ -7,7 +7,7 @@
     <title>Health Care Hospital</title>
     <link rel="stylesheet" href="css/common/base.css">
     <link rel="stylesheet" href="css/common/nav.css">
-    <link rel="stylesheet" href="css/common/footer.css">
+    <link rel="stylesheet" href="css/common/footer_h.css">
     <link rel="stylesheet" href="css/index_h.css">
 </head>
 
@@ -126,9 +126,9 @@
                 <h3>More Info</h3>
                 <ul>
                     <li><a href="php/user/about.php">About Us</a></li>
-                    <li><a href="">Services</a></li>
-                    <li><a href="php/user/careers.php">Careers</a></li>
-                    <li><a href="">FAQ</a></li>
+                    <li><a href="php/user/service.php">Services</a></li>
+                    <li><a href="php/user/career.php">Careers</a></li>
+                    <li><a href="php/user/faq.php">FAQ</a></li>
                 </ul>
             </div>
 

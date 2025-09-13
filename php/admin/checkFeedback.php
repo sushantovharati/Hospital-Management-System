@@ -7,7 +7,7 @@
   <title>Check Feedback | Health Care Hospital</title>
   <link rel="stylesheet" href="..\..\css/common/base.css">
     <link rel="stylesheet" href="..\..\css/common/nav.css">
-    <link rel="stylesheet" href="..\..\css/common/footer.css">
+    <link rel="stylesheet" href="..\..\css/common/footer_h.css">
   <link rel="stylesheet" href="..\..\css/admin/checkFeedback.css">
 </head>
 
@@ -24,8 +24,6 @@
                     <li class="nav-item"><a href="addPatient.php" class="nav-link">Patients</a></li>
                     <li class="nav-item"><a href="addDoctor.php" class="nav-link">Doctors</a></li>
                     <li class="nav-item"><a href="resources.php" class="nav-link">Resources</a></li>
-                    <li class="nav-item"><a href="checkAppointment.php" class="nav-link">Appointments</a></li>
-                    <li class="nav-item"><a href="billReport.php" class="nav-link">Billing Report</a></li>
                     <li class="nav-item"><a href="checkFeedback.php" class="nav-link">Check Feedback</a></li>
                     <li class="nav-item"><a href="../../index.php" class="nav-link">Logout</a></li>
                 </ul>

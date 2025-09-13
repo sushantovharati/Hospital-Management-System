@@ -1,12 +1,13 @@
 .footer {
     background-color: rgba(0, 77, 77, 1);
     height: 220px;
+    padding: 0 10%;
 }
 
 .footer-container{
     margin: 0 auto;
     padding-top: 10px;
-    max-width: 1450px;
+    /* max-width: 1450px; */
     justify-content: space-between;
     color: rgba(255, 255, 255, 1);
 }

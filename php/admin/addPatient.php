@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add Patient | Health Care Hospital</title>
     <link rel="stylesheet" href="..\..\css/common/base.css">
     <link rel="stylesheet" href="..\..\css/common/nav.css">
-    <link rel="stylesheet" href="..\..\css/common/footer.css">
-    <link rel="stylesheet" href="..\..\css/admin/addPatient.css">
+    <link rel="stylesheet" href="..\..\css/common/footer_h.css">
+    <link rel="stylesheet" href="..\..\css/admin/add_patient.css">
 </head>
-<body>
+
+<body class="bg-color">
     <header>
         <div class="navbar-container">
             <nav class="navbar montserrat-font display-flex">
@@ -22,14 +24,131 @@
                     <li class="nav-item"><a href="addPatient.php" class="nav-link">Patients</a></li>
                     <li class="nav-item"><a href="addDoctor.php" class="nav-link">Doctors</a></li>
                     <li class="nav-item"><a href="resources.php" class="nav-link">Resources</a></li>
-                    <li class="nav-item"><a href="checkAppointment.php" class="nav-link">Appointments</a></li>
-                    <li class="nav-item"><a href="billReport.php" class="nav-link">Billing Report</a></li>
                     <li class="nav-item"><a href="checkFeedback.php" class="nav-link">Check Feedback</a></li>
                     <li class="nav-item"><a href="../../index.php" class="nav-link">Logout</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
+    <main class="main-section">
+        <h2 class="montserrat-font">Add New Patient</h2>
+        <div class="add-patient">
+            <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" name="fname" placeholder="Enter first name">
+            </div>
+
+            <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" name="lname" placeholder="Enter last name">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone No</label>
+                <input type="text" name="phone" placeholder="Enter phone no">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" name="email" placeholder="patient@email.com">
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" name="dob" id="dob">
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select name="gender" id="gender">
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" name="address" placeholder="Enter address">
+            </div>
+
+            <div class="form-group">
+                <label for="disease">Disease</label>
+                <input type="text" name="disease" placeholder="Enter disease/problem">
+            </div>
+
+            <div class="form-group">
+                <label for="doctor">Assigned Doctor</label>
+                <input type="text" name="doctor" placeholder="Doctor name">
+            </div>
+
+            <div class="form-group">
+                <label for="admission">Admission Date</label>
+                <input type="date" name="admission">
+            </div>
+
+            <div class="form-group">
+                <label for="room">Room No</label>
+                <input type="text" name="room" placeholder="Enter room no">
+            </div>
+
+            <div class="form-group">
+                <label for="bed">Bed No</label>
+                <input type="text" name="bed" placeholder="Enter bed no">
+            </div>
+        </div>
+
+        <div class="buttons display-flex">
+            <button class="save" id="save">Save</button>
+        </div>
+
+        <section class="patient-list-section">
+            <h2 class="montserrat-font">All Patients</h2>
+            <table class="patient-table">
+                <thead>
+                    <tr>
+                        <th>Serial</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>DOB</th>
+                        <th>Gender</th>
+                        <th>Address</th>
+                        <th>Disease</th>
+                        <th>Doctor</th>
+                        <th>Admission Date</th>
+                        <th>Room</th>
+                        <th>Bed</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Rahim</td>
+                        <td>Hossain</td>
+                        <td>01712345678</td>
+                        <td>rahim@example.com</td>
+                        <td>1992-06-12</td>
+                        <td>Male</td>
+                        <td>Dhaka</td>
+                        <td>Fever</td>
+                        <td>Dr. Asif</td>
+                        <td>2025-09-10</td>
+                        <td>101</td>
+                        <td>5</td>
+                        <td>
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Remove</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
 
     <footer class="footer montserrat-font">
         <section class="footer-container display-flex">
@@ -62,7 +181,6 @@
             </div>
         </section>
     </footer>
-
-    
 </body>
+
 </html>

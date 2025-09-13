@@ -7,7 +7,7 @@
     <title>Health Care Hospital/Contact Us</title>
     <link rel="stylesheet" href="../../css/common/base.css">
     <link rel="stylesheet" href="../../css/common/nav.css">
-    <link rel="stylesheet" href="../../css/common/footer.css">
+    <link rel="stylesheet" href="../../css/common/footer_h.css">
     <link rel="stylesheet" href="../../css/user/contact_us.css">
 </head>
 
@@ -24,7 +24,7 @@
         } else {
             $name = test_input($_POST["name"]);
             if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
-                $nameErr = "Only letters and white space allowed";
+                $nameErr = "*Only letters and white space allowed";
             }
         }
 
@@ -33,7 +33,7 @@
         } else {
             $phone = test_input($_POST["phone"]);
             if (!preg_match("/^[0-9]{11}$/", $phone)) {
-                $phoneErr = "Invalid phone number";
+                $phoneErr = "*Invalid phone number";
             }
         }
 
@@ -42,7 +42,7 @@
         } else {
             $email = test_input($_POST["email"]);
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $emailErr = "Invalid email format";
+                $emailErr = "*Invalid email format";
             }
         }
 
@@ -51,7 +51,7 @@
         } else {
             $message = test_input($_POST["message"]);
             if (strlen($message) < 8) {
-                $messageErr = "Message is too short. Please explain about your query.";
+                $messageErr = "*Message is too short. Please explain about your query.";
             }
         }
         if (empty($nameErr) && empty($phoneErr) && empty($emailErr) && empty($messageErr)) {
@@ -87,6 +87,7 @@
             </nav>
         </div>
     </header>
+
     <main class="main-section">
         <div class="text-section">
             <h1 class="section-title montserrat-font">We're Here to Help You</h1>
@@ -101,7 +102,7 @@
             </div>
 
             <div class="form-group">
-                <label class="montserrat-font" for="phone">Phone</label>
+                <label class="montserrat-font" for="phone">Phone No</label>
                 <input type="tel" id="phone" name="phone" value="<?php echo $phone; ?>" placeholder="Your Phone Number">
                 <span class="error"><?php echo $phoneErr; ?></span>
             </div>
@@ -128,27 +129,27 @@
                 <h3>More Info</h3>
                 <ul>
                     <li><a href="about.php">About Us</a></li>
-                    <li><a href="services.php">Services</a></li>
-                    <li><a href="careers.php">Careers</a></li>
+                    <li><a href="service.php">Services</a></li>
+                    <li><a href="career.php">Careers</a></li>
                     <li><a href="faq.php">FAQ</a></li>
                 </ul>
             </div>
 
             <div class="footer-section center">
                 <h3>Find Us</h3>
-                <img src="..\..\image/footer/map1.png" alt="Google Map">
+                <img src="../../image/footer/map1.png" alt="Google Map">
                 <p class="copyright">© 2025 Health Care Hospital. All Rights Reserved.</p>
             </div>
 
             <div class="footer-section right">
                 <h3>Contact Info</h3>
                 <p>+8801XXXXXXXXX</p>
-                <p>healthcarehospital@clinic.com</p>
+                <p>healthcare.hospital@clinic.com</p>
                 <div class="social-links">
-                    <a href=""><img src="..\..\image/footer/icon_fb.png" alt="facebook"></a>
-                    <a href=""><img src="..\..\image/footer/icon_instagram.png" alt="instagram"></a>
-                    <a href=""><img src="..\..\image/footer/icon_LN.png" alt="linkedin"></a>
-                    <a href=""><img src="..\..\image/footer/icon_x.png" alt="x"></a>
+                    <a href=""><img src="../../image/footer/icon_fb.png" alt="facebook"></a>
+                    <a href=""><img src="../../image/footer/icon_instagram.png" alt="instagram"></a>
+                    <a href=""><img src="../../image/footer/icon_LN.png" alt="linkedin"></a>
+                    <a href=""><img src="../../image/footer/icon_x.png" alt="x"></a>
                 </div>
             </div>
         </section>

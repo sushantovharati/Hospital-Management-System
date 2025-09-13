@@ -1,8 +1,9 @@
-.main-section>h2{
+.main-section > h2 {
     font-size: 30px;
     margin: 15px 0px 20px 0px;
 }
-.add-doctor {
+
+.add-patient {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -54,44 +55,44 @@
     background-color: #047527;
 }
 
-.doctor-list-section {
+.patient-list-section {
     margin-top: 40px;
 }
 
-.doctor-list-section h2 {
+.patient-list-section h2 {
     font-size: 28px;
     margin-bottom: 20px;
 }
 
-.doctor-table {
+.patient-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 40px;
 }
 
-.doctor-table th,
-.doctor-table td {
+.patient-table th,
+.patient-table td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
     font-size: 14px;
 }
 
-.doctor-table th {
+.patient-table th {
     background-color: #0077b6;
     color: white;
     font-size: 16px;
 }
 
-.doctor-table tr:nth-child(even) {
+.patient-table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-.doctor-table tr:hover {
+.patient-table tr:hover {
     background-color: #e0f7fa;
 }
 
-.doctor-table button {
+.patient-table button {
     padding: 5px 10px;
     margin-right: 5px;
     border: none;
@@ -102,23 +103,23 @@
     transition: background-color 0.3s;
 }
 
-.doctor-table button:hover {
+.patient-table button:hover {
     background-color: #0096c7;
 }
 
-/* Doctor Table - Action Buttons */
-.doctor-table .edit-btn {
+/* Patient Table - Action Buttons */
+.patient-table .edit-btn {
     background-color: #28a745;
 }
 
-.doctor-table .edit-btn:hover {
+.patient-table .edit-btn:hover {
     background-color: #218838;
 }
 
-.doctor-table .delete-btn {
+.patient-table .delete-btn {
     background-color: #dc3545;
 }
 
-.doctor-table .delete-btn:hover {
+.patient-table .delete-btn:hover {
     background-color: #c82333;
 }

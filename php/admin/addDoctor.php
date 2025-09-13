@@ -7,7 +7,7 @@
     <title>Add Doctor | Health Care Hospital</title>
     <link rel="stylesheet" href="..\..\css/common/base.css">
     <link rel="stylesheet" href="..\..\css/common/nav.css">
-    <link rel="stylesheet" href="..\..\css/common/footer.css">
+    <link rel="stylesheet" href="..\..\css/common/footer_h.css">
     <link rel="stylesheet" href="..\..\css/admin/add_doctor.css">
 </head>
 
@@ -95,7 +95,7 @@
         </div>
 
         <section class="doctor-list-section">
-            <h2>All Doctors</h2>
+            <h2 class="montserrat-font">All Doctors</h2>
             <table class="doctor-table">
                 <thead>
                     <tr>
@@ -145,15 +145,6 @@
                 </tbody>
             </table>
         </section>
-
-
-        <!-- <div class="doctor-profile">
-            <h1>Doctor Profile</h1>
-            <label for="fullname">Doctor Name:</label>
-            <label for="appointmenttime">Appointment Time: </label>
-            <label for="absent">Absent in Current Month: </label>
-            <label for="salary">Salary:</label>
-        </div> -->
     </main>
 
     <footer class="footer montserrat-font">

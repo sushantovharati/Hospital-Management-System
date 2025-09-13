@@ -1,52 +1,32 @@
+<?php
+// testReport.php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Health Care Hospital/Login</title>
+    <title>Test Reports - Health Care Hospital</title>
     <link rel="stylesheet" href="../../css/common/base.css">
     <link rel="stylesheet" href="../../css/common/nav.css">
     <link rel="stylesheet" href="../../css/common/footer_h.css">
-     <link rel="stylesheet" href="../../css/user/login.css">
-
+    <link rel="stylesheet" href="../../css/user/test_report.css">
 </head>
 
 <body class="bg-color">
-    <?php
-    $usernameErr = $passwordErr = "";
-    $username = $password = "";
-    
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (empty($_POST["username"])) {
-            $usernameErr = "*Username is required";
-        }else{
-            $username = test_input($_POST["username"]);
-        }
-
-        if (empty($_POST["password"])) {
-            $passwordErr = "*Password is required";
-        }
-    }
-
-        function test_input($data)
-    {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
-
-    ?>
+ 
     <header>
         <div class="navbar-container">
             <nav class="navbar montserrat-font display-flex">
                 <div class="brand display-flex">
-                    <img class="brand-logo" src="..\..\image/main.ico" alt="Health Care Hospital Logo">
+                    <img class="brand-logo" src="../../image/main.ico" alt="Health Care Hospital Logo">
                     <h3 class="brand-name">Health Care Hospital</h3>
                 </div>
                 <ul class="nav-links display-flex">
-                    <li class="nav-item"><a href="..\..\index.php" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="../../index.php" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="findDoctors.php" class="nav-link">Doctors</a></li>
                     <li class="nav-item"><a href="departments.php" class="nav-link">Departments</a></li>
                     <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
@@ -57,40 +37,51 @@
         </div>
     </header>
 
-    <main class="main-section">
-        <form class="form-content" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-            <div class="form-title">
-                <h1 class="iceland-regular">Login</h1>
-                <p>Welcome onboard with us!</p>
-            </div>
+    <main class="main-section montserrat-font">
+        <section class="test-report-section">
+            <h2 class="page-title">Your Test Reports</h2>
+            <p class="page-description roboto-font">
+                Here you can view and download your medical test reports. Please log in to see your personal reports.
+            </p>
 
-            <div class="form-group">
-                <label for="username">Email or Phone No</label> <br>
-                <input type="text" name="username" id="user" value="<?php echo $username; ?>" placeholder="Enter your email or phone no">
-                <span class="error"><?php echo $usernameErr; ?></span>
+            <div class="report-list">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>Report ID</th>
+                            <th>Patient Name</th>
+                            <th>Test Name</th>
+                            <th>Date</th>
+                            <th>Download</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Example static data (later DB theke fetch korbe) -->
+                        <tr>
+                            <td>RPT001</td>
+                            <td>John Doe</td>
+                            <td>Blood Test</td>
+                            <td>2025-09-10</td>
+                            <td><a href="../../reports/blood_test.pdf" class="download-link">Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>RPT002</td>
+                            <td>Jane Smith</td>
+                            <td>X-Ray</td>
+                            <td>2025-09-12</td>
+                            <td><a href="../../reports/xray_report.pdf" class="download-link">Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>RPT003</td>
+                            <td>Rahim Khan</td>
+                            <td>ECG</td>
+                            <td>2025-09-13</td>
+                            <td><a href="../../reports/ecg_report.pdf" class="download-link">Download</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-
-            <div class="form-group">
-                <label for="password">Password</label> <br>
-                <input type="password" name="password" id="password" value="<?php echo $password; ?>" placeholder="Enter your password">
-                <span class="error"><?php echo $passwordErr; ?></span>
-            </div>
-
-            <div>
-                <a class="forgot-password" href="">Forgot Password?</a>
-            </div>
-
-            <div>
-                <button class="form-btn">Login</button>
-            </div>
-
-            <div class="form-register">
-                <label for="">Don't have account?</label>
-                <a href="registerForm.php">Register</a>
-                <label for="">Here</label>
-            </div>
-
-        </form>
+        </section>
     </main>
 
     <footer class="footer montserrat-font">
@@ -124,6 +115,7 @@
             </div>
         </section>
     </footer>
+
 </body>
 
 </html>

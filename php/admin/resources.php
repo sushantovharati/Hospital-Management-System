@@ -7,7 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="..\..\css/common/base.css">
     <link rel="stylesheet" href="..\..\css/common/nav.css">
-    <link rel="stylesheet" href="..\..\css/common/footer.css">
+    <link rel="stylesheet" href="..\..\css/common/footer_h.css">
     <link rel="stylesheet" href="..\..\css/admin/resource_h.css">
 </head>
 

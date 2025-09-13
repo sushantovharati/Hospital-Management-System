@@ -7,7 +7,7 @@
     <title>Find a Doctor | Health Care Hospital</title>
     <link rel="stylesheet" href="..\..\css/common/base.css">
     <link rel="stylesheet" href="..\..\css/common/nav.css">
-    <link rel="stylesheet" href="..\..\css/common/footer.css">
+    <link rel="stylesheet" href="..\..\css/common/footer_h.css">
     <link rel="stylesheet" href="..\..\css/user/find_doctors.css">
 </head>
 
@@ -326,27 +326,27 @@
                 <h3>More Info</h3>
                 <ul>
                     <li><a href="about.php">About Us</a></li>
-                    <li><a href="services.php">Services</a></li>
-                    <li><a href="careers.php">Careers</a></li>
+                    <li><a href="service.php">Services</a></li>
+                    <li><a href="career.php">Careers</a></li>
                     <li><a href="faq.php">FAQ</a></li>
                 </ul>
             </div>
 
             <div class="footer-section center">
                 <h3>Find Us</h3>
-                <img src="..\..\image/footer/map1.png" alt="Google Map">
+                <img src="../../image/footer/map1.png" alt="Google Map">
                 <p class="copyright">© 2025 Health Care Hospital. All Rights Reserved.</p>
             </div>
 
             <div class="footer-section right">
                 <h3>Contact Info</h3>
                 <p>+8801XXXXXXXXX</p>
-                <p>healthcarehospital@clinic.com</p>
+                <p>healthcare.hospital@clinic.com</p>
                 <div class="social-links">
-                    <a href=""><img src="..\..\image/footer/icon_fb.png" alt="facebook"></a>
-                    <a href=""><img src="..\..\image/footer/icon_instagram.png" alt="instagram"></a>
-                    <a href=""><img src="..\..\image/footer/icon_LN.png" alt="linkedin"></a>
-                    <a href=""><img src="..\..\image/footer/icon_x.png" alt="x"></a>
+                    <a href=""><img src="../../image/footer/icon_fb.png" alt="facebook"></a>
+                    <a href=""><img src="../../image/footer/icon_instagram.png" alt="instagram"></a>
+                    <a href=""><img src="../../image/footer/icon_LN.png" alt="linkedin"></a>
+                    <a href=""><img src="../../image/footer/icon_x.png" alt="x"></a>
                 </div>
             </div>
         </section>
