@@ -69,16 +69,15 @@
         <div class="navbar-container">
             <nav class="navbar montserrat-font display-flex">
                 <div class="brand display-flex">
-                    <img class="brand-logo" src="../../image/main.ico" alt="Health Care Hospital Logo">
+                    <img class="brand-logo" src="..\..\image/main.ico" alt="Health Care Hospital Logo">
                     <h3 class="brand-name">Health Care Hospital</h3>
                 </div>
                 <ul class="nav-links display-flex">
-                    <li class="nav-item"><a href="../../index.php" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="..\..\index.php" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="findDoctors.php" class="nav-link">Doctors</a></li>
                     <li class="nav-item"><a href="departments.php" class="nav-link">Departments</a></li>
                     <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="contactUs.php" class="nav-link">Contact Us</a></li>
-                    <li class="nav-item"><a href="careers.php" class="nav-link active">Careers</a></li>
                     <li class="nav-item"><a href="loginForm.php" class="nav-link">Login</a></li>
                 </ul>
             </nav>
@@ -87,7 +86,7 @@
 
     <main class="main-section">
         <section class="text-section">
-            <h1 class="section-title">Join Our Team</h1>
+            <h1 class="section-title montserrat-font">Join Our Team</h1>
             <p class="section-description roboto-font">Explore career opportunities and submit your application online.</p>
         </section>
 
@@ -125,7 +124,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="message">Additional Information (Optional)</label>
+                    <label for="message">Additional Information <small class="small-text">(Optional)</small></label>
                     <textarea id="message" name="message" rows="4" placeholder="Add any relevant information..."><?php echo $message; ?></textarea>
                 </div>
 

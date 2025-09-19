@@ -81,11 +81,12 @@
         <div class="navbar-container">
             <nav class="navbar montserrat-font display-flex">
                 <div class="brand display-flex">
-                    <img class="brand-logo" src="..\..\image/main.ico" alt="Health Care Hospital Logo">
+                    <img class="brand-logo" src="../../image/main.ico" alt="Health Care Hospital Logo">
                     <h3 class="brand-name">Health Care Hospital</h3>
                 </div>
+                
                 <ul class="nav-links display-flex">
-                    <li class="nav-item"><a href="..\..\index.php" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="../../index.php" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="findDoctors.php" class="nav-link">Doctors</a></li>
                     <li class="nav-item"><a href="departments.php" class="nav-link">Departments</a></li>
                     <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
@@ -96,59 +97,68 @@
         </div>
     </header>
 
-<main class="main-section">
-    <h2>Fill Out the Form Below to Register</h2>
-    <form class="form-contain" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        <div class="form-group">
-            <label for="fname">First Name</label>
-            <input type="text" name="fname" id="fname" value="<?php echo $fname;?>" placeholder="Enter your first name">
-            <span class="error"><?php echo $fnameErr;?></span>
-        </div>
+    <main class="main-section">
+        <h2>Fill Out the Form Below to Register</h2>
+        <form class="form-contain" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            
+            <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" name="fname" id="fname" value="<?php echo $fname; ?>" placeholder="Enter your first name">
+                <span class="error"><?php echo $fnameErr; ?></span>
+            </div>
 
-        <div class="form-group">
-            <label for="lname">Last Name</label>
-            <input type="text" name="lname" id="lname" value="<?php echo $lname;?>" placeholder="Enter your last name">
-            <span class="error"><?php echo $lnameErr;?></span>
-        </div>
+            <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" name="lname" id="lname" value="<?php echo $lname; ?>" placeholder="Enter your last name">
+                <span class="error"><?php echo $lnameErr; ?></span>
+            </div>
 
-        <div class="form-group">
-            <label for="phone">Phone No</label>
-            <input type="text" name="phone" id="phone" value="<?php echo $phone;?>" placeholder="Enter your phone number">
-            <span class="error"><?php echo $phoneErr;?></span>
-        </div>
+            <div class="form-group">
+                <label for="phone">Phone No</label>
+                <input type="text" name="phone" id="phone" value="<?php echo $phone; ?>" placeholder="Enter your phone number">
+                <span class="error"><?php echo $phoneErr; ?></span>
+            </div>
 
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email" value="<?php echo $email;?>" placeholder="you@email.com">
-            <span class="error"><?php echo $emailErr;?></span>
-        </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" value="<?php echo $email; ?>" placeholder="you@email.com">
+                <span class="error"><?php echo $emailErr; ?></span>
+            </div>
 
-        <div class="form-group">
-            <label for="dob">Date of Birth</label>
-            <input type="date" name="dob" id="dob" value="<?php echo $dob;?>">
-            <span class="error"><?php echo $dobErr;?></span>
-        </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" name="dob" id="dob" value="<?php echo $dob; ?>">
+                <span class="error"><?php echo $dobErr; ?></span>
+            </div>
 
-        <div class="form-group">
-            <label for="gender">Gender</label>
-            <select name="gender" id="gender">
-                <option value="" disabled <?php if($gender==""){echo "selected";}?>>Select your gender</option>
-                <option value="male" <?php if($gender=="male"){echo "selected";}?>>Male</option>
-                <option value="female" <?php if($gender=="female"){echo "selected";}?>>Female</option>
-                <option value="other" <?php if($gender=="other"){echo "selected";}?>>Other</option>
-            </select>
-            <span class="error"><?php echo $genderErr;?></span>
-        </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select name="gender" id="gender">
+                    <option value="" disabled <?php if ($gender == "") {
+                                                    echo "selected";
+                                                } ?>>Select your gender</option>
+                    <option value="male" <?php if ($gender == "male") {
+                                                echo "selected";
+                                            } ?>>Male</option>
+                    <option value="female" <?php if ($gender == "female") {
+                                                echo "selected";
+                                            } ?>>Female</option>
+                    <option value="other" <?php if ($gender == "other") {
+                                                echo "selected";
+                                            } ?>>Other</option>
+                </select>
+                <span class="error"><?php echo $genderErr; ?></span>
+            </div>
 
-        <div class="form-group">
-            <label for="address">Address</label>
-            <textarea name="address" id="address" placeholder="House no, Road no, Thana, District"><?php echo $address;?></textarea>
-            <span class="error"><?php echo $addressErr;?></span>
-        </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <textarea name="address" id="address" placeholder="House no, Road no, Thana, District"><?php echo $address; ?></textarea>
+                <span class="error"><?php echo $addressErr; ?></span>
+            </div>
 
-        <input type="submit" value="Submit" name="submit">
-    </form>
-</main>
+            <input type="submit" value="Submit" name="submit">
+        </form>
+    </main>
 
     <footer class="footer montserrat-font">
         <section class="footer-container display-flex">

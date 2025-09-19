@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../../css/common/base.css">
     <link rel="stylesheet" href="../../css/common/nav.css">
     <link rel="stylesheet" href="../../css/common/footer_h.css">
-     <link rel="stylesheet" href="../../css/user/login.css">
+    <link rel="stylesheet" href="../../css/user/login.css">
 
 </head>
 
@@ -16,11 +16,11 @@
     <?php
     $usernameErr = $passwordErr = "";
     $username = $password = "";
-    
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["username"])) {
             $usernameErr = "*Username is required";
-        }else{
+        } else {
             $username = test_input($_POST["username"]);
         }
 
@@ -29,7 +29,7 @@
         }
     }
 
-        function test_input($data)
+    function test_input($data)
     {
         $data = trim($data);
         $data = stripslashes($data);

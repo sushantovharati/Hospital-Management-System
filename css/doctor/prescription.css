@@ -1,6 +1,7 @@
 .main-section{
-    margin: 60px 10% 10px 10%;
+    margin: 60px 10% 0px 10%;
     background-color: white;
+    padding:20px 15% 15px 15%;
 }
 .main-section h2 {
     text-align: center;
@@ -11,7 +12,7 @@
 .form-contain {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 }
 
 .form-group {
@@ -21,7 +22,8 @@
 
 .form-group label {
     font-size: 1.2rem;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .form-group input,
@@ -39,6 +41,7 @@
 
 input[type="submit"] {
     width: 100%;
+    margin-top: 10px;
     padding: 12px;
     font-size: 1.2rem;
     border-radius: 10px;

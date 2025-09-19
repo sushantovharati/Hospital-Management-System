@@ -1,9 +1,11 @@
 .text-section {
     text-align: center;
 }
+
 .text-section .section-title {
     font-size: 3rem;
 }
+
 .text-section .section-description {
     font-size: 1.3rem;
 }
@@ -21,12 +23,19 @@ form label {
     font-size: 1.5rem;
 }
 
-.form-group input,
-.form-group select {
+.form-group input {
     font-size: 15px;
     padding: 10px;
     margin: 10px auto;
     width: calc(100% - 20px);
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+.form-group #doctor {
+    min-width: 100%;
+    font-size: 15px;
+    padding: 10px;
     border: 1px solid #000000;
     border-radius: 5px;
 }

@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="../../css/doctor/profile.css">
 </head>
 
-<body>
+<body class="bg-color">
   <header>
     <div class="navbar-container">
       <nav class="navbar montserrat-font display-flex">
@@ -33,7 +33,7 @@
 
   <section class="main-section profile-section">
     <div class="profile-header">
-      <img src="doctor.jpg" alt="Doctor Image" class="profile-img">
+      <img src="../../image/doctors/doctor1.png" alt="Doctor Image" class="profile-img">
       <h2 class="doctor-name">Dr. John Smith</h2>
     </div>
     <section class="doctor-profile-section">
@@ -41,10 +41,10 @@
       <div class="doctor-profile">
         <div class="profile-row">
           <span class="profile-label">Doctor Name:</span>
-          <span class="profile-value" id="profile-name">Asif Sayed</span>
+          <span class="profile-value" id="profile-name">Dr. John Smith</span>
         </div>
         <div class="profile-row">
-          <span class="profile-label">Appointment Time:</span>
+          <span class="profile-label">Duty Time:</span>
           <span class="profile-value" id="profile-appointment">9:00 AM - 5:00 PM</span>
         </div>
         <div class="profile-row">

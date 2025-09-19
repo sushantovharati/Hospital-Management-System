@@ -38,11 +38,10 @@
 
             <div class="searching-section display-flex">
                 <input type="text" name="doctor-name" id="dorcot-name" placeholder="Search by doctor name">
-                <!-- <input type="text" name="doctor-department" id="doctor-department" placeholder="Search by department"> -->
-                 <select name="doctor-department" id="doctor-department">
+                <select name="doctor-department" id="doctor-department">
                     <option value="selectdepartment">Select Department</option>
                     <option value="Cardiologist">Cardiologist</option>
-                 </select>
+                </select>
             </div>
 
             <div class="doctors-list">
@@ -351,6 +350,8 @@
             </div>
         </section>
     </footer>
+
+    <script src="../../js/finddoctors.js"></script>
 </body>
 
 </html>

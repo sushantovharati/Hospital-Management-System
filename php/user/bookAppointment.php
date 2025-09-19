@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../../css/common/base.css">
     <link rel="stylesheet" href="../../css/common/nav.css">
     <link rel="stylesheet" href="../../css/common/footer_h.css">
-    <link rel="stylesheet" href="../../css/user/bookAppointment.css">
+    <link rel="stylesheet" href="../../css/user/book_appointment.css">
 </head>
 
 <body class="bg-color">
@@ -101,7 +101,7 @@
 
     <main class="main-section">
         <section class="text-section">
-            <h2 class="section-title">Book an Appointment</h2>
+            <h2 class="section-title montserrat-font">Book an Appointment</h2>
             <p class="section-description roboto-font">
                 Please fill out the form below to schedule your appointment with our specialist doctors.
             </p>

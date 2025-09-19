@@ -8,7 +8,7 @@
     <title>Appointment | Health Care Hospital</title>
     <link rel="stylesheet" href="../../css/common/base.css">
     <link rel="stylesheet" href="../../css/common/nav.css">
-    <link rel="stylesheet" href="../../css/common/footer.css">
+    <link rel="stylesheet" href="../../css/common/footer_h.css">
     <link rel="stylesheet" href="../../css/doctor/appointment_h.css">
 </head>
 

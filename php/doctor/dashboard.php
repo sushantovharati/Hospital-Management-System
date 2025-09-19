@@ -7,7 +7,7 @@
     <title>Doctor Dashboard | Health Care Hospital</title>
     <link rel="stylesheet" href="../../css/common/base.css">
     <link rel="stylesheet" href="../../css/common/nav.css">
-    <link rel="stylesheet" href="../../css/common/footer.css">
+    <link rel="stylesheet" href="../../css/common/footer_h.css">
     <link rel="stylesheet" href="../../css/doctor/dashboard.css">
 </head>
 
@@ -17,7 +17,7 @@
         <div class="navbar-container">
             <nav class="navbar montserrat-font display-flex">
                 <div class="brand display-flex">
-                    <img class="brand-logo" src="..\..\image/main.ico" alt="Health Care Hospital Logo">
+                    <img class="brand-logo" src="../../image/main.ico" alt="Health Care Hospital Logo">
                     <h3 class="brand-name">Health Care Hospital</h3>
                 </div>
                 <ul class="nav-links display-flex">
@@ -32,7 +32,7 @@
         </div>
     </header>
 
-    <main class="dashboard-main">
+    <main class="main-section dashboard-main">
         <h2>Welcome Dr. John Doe</h2>
         <div class="cards-container">
 
@@ -61,9 +61,9 @@
         <section class="quick-links">
             <h3>Quick Actions</h3>
             <div class="links">
-                <a href="add_prescription.php" class="btn">Add Prescription</a>
-                <a href="patients.php" class="btn">View Patients</a>
-                <a href="appointments.php" class="btn">View Schedule</a>
+                <a href="prescription.php" class="btn">Add Prescription</a>
+                <a href="patient.php" class="btn">View Patients</a>
+                <a href="appointment.php" class="btn">View Schedule</a>
             </div>
         </section>
     </main>

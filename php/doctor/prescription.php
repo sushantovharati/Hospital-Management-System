@@ -1,14 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prescription | Health Care Hospital</title>
     <link rel="stylesheet" href="../../css/common/base.css">
     <link rel="stylesheet" href="../../css/common/nav.css">
-    <link rel="stylesheet" href="../../css/common/footer.css">
+    <link rel="stylesheet" href="../../css/common/footer_h.css">
     <link rel="stylesheet" href="../../css/doctor/prescription.css">
 </head>
+
+<?php
+
+$patient_nameErr = $ageErr = $next_visitErr = "";
+$patient_name = $age = $next_visit = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["patient_name"])) {
+        $patient_nameErr = "*Patient name is required";
+    } else {
+        $patient_name = test_input($_POST["patient_name"]);
+        if (!preg_match("/^[a-zA-Z-' ]*$/", $patient_name)) {
+            $patient_nameErr = "*Only letters and white space allowed";
+        }
+    }
+
+    if (empty($_POST["age"])) {
+        $ageErr = "*Patient age is required";
+    } else {
+        $age = test_input($_POST["age"]);
+        if (!preg_match("/^[0-9]+$/", $age)) {
+            $ageErr = "*Invalid age number";
+        } elseif ($age <= 0 || $age > 150) {
+            $ageErr = "*Invalid age number";
+        }
+    }
+
+    if (empty($_POST["next_visit"])) {
+        $next_visitErr = "*Next visit date is required";
+    } else {
+        $next_visit = $_POST["next_visit"];
+        $tomorrow = date('Y-m-d', strtotime('+1 day'));
+        if (!preg_match("/^\d{4}-\d{2}-\d{2}$/", $next_visit)) {
+            $next_visitErr = "*Invalid date format";
+        } elseif ($next_visit < $tomorrow) {
+            $next_visitErr = "*Next visit must be tomorrow or later";
+        } else {
+            $next_visit = test_input($next_visit);
+            $next_visit = date("d/m/Y", strtotime($next_visit));
+            $tomorrow = date("d/m/Y", strtotime('+1 day'));
+        }
+    }
+}
+
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+
+?>
+
 <body class="bg-color">
     <header>
         <div class="navbar-container">
@@ -31,15 +87,18 @@
 
     <main class="main-section">
         <h2>Write Prescription</h2>
-        <form class="prescription-form" method="post" action="">
+        <form class="form-contain" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+
             <div class="form-group">
                 <label for="patient_name">Patient Name</label>
-                <input type="text" id="patient_name" name="patient_name" placeholder="Enter patient name">
+                <input type="text" id="patient_name" name="patient_name" value="<?php echo $patient_name; ?>" placeholder="Enter patient name">
+                <span class="error"><?php echo $patient_nameErr; ?></span>
             </div>
 
             <div class="form-group">
                 <label for="age">Age</label>
-                <input type="number" id="age" name="age" placeholder="Enter age">
+                <input type="number" id="age" name="age" placeholder="Enter age" value="<?php echo $age; ?>">
+                <span class="error"><?php echo $ageErr; ?></span>
             </div>
 
             <div class="form-group">
@@ -60,9 +119,10 @@
             <div class="form-group">
                 <label for="next_visit">Next Visit Date</label>
                 <input type="date" id="next_visit" name="next_visit">
+                <span class="error"><?php echo $next_visitErr; ?></span>
             </div>
 
-            <button type="submit" class="save-btn">Save Prescription</button>
+            <input type="submit" name="submit" value="Save">
         </form>
     </main>
 
@@ -98,4 +158,5 @@
         </section>
     </footer>
 </body>
+
 </html>
