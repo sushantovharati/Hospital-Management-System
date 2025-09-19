@@ -13,10 +13,11 @@
 
 <body class="bg-color">
     <?php
+    include '../db_connect.php';
 
-    $fnameErr = $lnameErr = $phoneErr = $emailErr = $dobErr = $genderErr = $addressErr = "";
+    $fnameErr = $lnameErr = $phoneErr = $emailErr = $dobErr = $genderErr = $addressErr = $passwordErr = $confirmPasswordErr = "";
 
-    $fname = $lname = $phone = $email = $dob = $gender = $address = "";
+    $fname = $lname = $phone = $email = $dob = $gender = $address = $password = $confirmPassword = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["fname"])) {
@@ -55,6 +56,12 @@
             }
         }
 
+        if (empty($_POST["dob"])) {
+            $dobErr = "*Date of Birth is required";
+        } else {
+            $dob = test_input($_POST["dob"]);
+        }
+
         if (empty($_POST["gender"])) {
             $genderErr = "*Gender is required";
         } else {
@@ -64,7 +71,25 @@
         if (empty($_POST["address"])) {
             $addressErr = "*Address is required";
         } else {
-            $address = test_input($_POST["comment"]);
+            $address = test_input($_POST["address"]);
+        }
+
+        if (empty($_POST["password"])) {
+            $passwordErr = "*Password is required";
+        } else {
+            $password = test_input($_POST["password"]);
+            if (strlen($password) < 6) {
+                $passwordErr = "*Password must be at least 6 characters long";
+            }
+        }
+
+        if (empty($_POST["confirm_password"])) {
+            $confirmPasswordErr = "*Please confirm your password";
+        } else {
+            $confirmPassword = test_input($_POST["confirm_password"]);
+            if ($password !== $confirmPassword) {
+                $confirmPasswordErr = "*Passwords do not match";
+            }
         }
     }
 
@@ -76,6 +101,25 @@
         return $data;
     }
 
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($fnameErr) && empty($lnameErr) && empty($phoneErr) && empty($emailErr) && empty($dobErr) && empty($genderErr) && empty($addressErr) && empty($passwordErr) && empty($confirmPasswordErr)) {
+
+            $stmt = $conn->prepare("INSERT INTO users (fname, lname, phone, email, dob, gender, address, password) VALUES ('$fname', '$lname', '$phone', '$email', '$dob', '$gender', '$address', '$password')");
+
+            if ($stmt->execute()) {
+                $fname = $lname = $phone = $email = $dob = $gender = $address = "";
+                $password = $confirmPassword = "";
+                // echo "<p style='color:green;'>Registration successful!</p>";
+            } else {
+                echo "<p style='color:red;'>Error: " . $stmt->error . "</p>";
+            }
+
+            $stmt->close();
+        }
+    }
+
+    $conn->close();
+
     ?>
     <header>
         <div class="navbar-container">
@@ -84,7 +128,7 @@
                     <img class="brand-logo" src="../../image/main.ico" alt="Health Care Hospital Logo">
                     <h3 class="brand-name">Health Care Hospital</h3>
                 </div>
-                
+
                 <ul class="nav-links display-flex">
                     <li class="nav-item"><a href="../../index.php" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="findDoctors.php" class="nav-link">Doctors</a></li>
@@ -100,7 +144,7 @@
     <main class="main-section">
         <h2>Fill Out the Form Below to Register</h2>
         <form class="form-contain" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-            
+
             <div class="form-group">
                 <label for="fname">First Name</label>
                 <input type="text" name="fname" id="fname" value="<?php echo $fname; ?>" placeholder="Enter your first name">
@@ -154,6 +198,18 @@
                 <label for="address">Address</label>
                 <textarea name="address" id="address" placeholder="House no, Road no, Thana, District"><?php echo $address; ?></textarea>
                 <span class="error"><?php echo $addressErr; ?></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter your password" value="<?php echo $password; ?>">
+                <span class="error"><?php echo $passwordErr; ?></span>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Re-enter password" value="<?php echo $confirmPassword; ?>">
+                <span class="error"><?php echo $confirmPasswordErr; ?></span>
             </div>
 
             <input type="submit" value="Submit" name="submit">
