@@ -1,3 +1,7 @@
+<?php
+include '../db_connect.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,35 +9,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Doctor | Health Care Hospital</title>
-    <link rel="stylesheet" href="..\..\css/common/base.css">
-    <link rel="stylesheet" href="..\..\css/common/nav.css">
-    <link rel="stylesheet" href="..\..\css/common/footer_h.css">
-    <link rel="stylesheet" href="..\..\css/admin/add_doctor.css">
+    <link rel="stylesheet" href="../../css/common/base.css">
+    <link rel="stylesheet" href="../../css/admin/add_doctor.css">
 </head>
 
 <body class="bg-color">
-    <header>
-        <div class="navbar-container">
-            <nav class="navbar montserrat-font display-flex">
-                <div class="brand display-flex">
-                    <img class="brand-logo" src="..\..\image/main.ico" alt="Health Care Hospital Logo">
-                    <h3 class="brand-name">Health Care Hospital</h3>
-                </div>
-                <ul class="nav-links display-flex">
-                    <li class="nav-item"><a href="adminDashboard.php" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="addPatient.php" class="nav-link">Patients</a></li>
-                    <li class="nav-item"><a href="addDoctor.php" class="nav-link">Doctors</a></li>
-                    <li class="nav-item"><a href="resources.php" class="nav-link">Resources</a></li>
-                    <li class="nav-item"><a href="checkFeedback.php" class="nav-link">Check Feedback</a></li>
-                    <li class="nav-item"><a href="../../index.php" class="nav-link">Logout</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+
+    <header> <?php include 'admin_header.php'; ?> </header>
 
     <main class="main-section">
-        <h2 class="montserrat-font">Add New Doctor</h2>
-        <div class="add-doctor">
+        <h2 class="montserrat-font section-title">Add New Doctor</h2>
+
+        <form action="" class="form-container">
             <div class="form-group">
                 <label for="fname">First Name</label>
                 <input type="text" name="fname" placeholder="Enter first name">
@@ -58,6 +45,12 @@
                 <label for="dob">Date of Birth</label>
                 <input type="date" name="dob" id="dob">
             </div>
+
+            <div class="form-group">
+                <label for="doj">Date of Joining</label>
+                <input type="date" name="doj" id="doj">
+            </div>
+
             <div class="form-group">
                 <label for="gender">Gender</label>
                 <select name="gender" id="gender">
@@ -67,6 +60,7 @@
                     <option value="other">Other</option>
                 </select>
             </div>
+
             <div class="form-group">
                 <label for="country">Country</label>
                 <select name="country" id="country" required>
@@ -85,99 +79,94 @@
             </div>
 
             <div class="form-group">
+                <label for="degree">Degree(s)</label>
+                <input type="text" name="degree" id="degree" placeholder="Example: MBBS, FCPS, MD" required>
+            </div>
+
+            <div class="form-group">
+                <label for="specialist">Specialist</label>
+                <input type="text" name="specialist" id="specialist" placeholder="Example: Cardiologist, Orthopedic Surgeon">
+            </div>
+
+            <div class="form-group">
                 <label for="salary">Salary</label>
                 <input type="text" name="salary" placeholder="Enter salary">
             </div>
-        </div>
 
-        <div class="buttons display-flex">
-            <button class="save" id="save">Save</button>
-        </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Set a password for doctor">
+            </div>
+
+            <input type="submit" class="save" id="save" value="Save">
+
+        </form>
+
+        <?php
+        if (isset($_GET['update_msg'])) {
+            echo '<h4 style="color: green;">' . $_GET['update_msg'] . '</h4>';
+        }
+        if (isset($_GET['delete_msg'])) {
+            echo '<h4 style="color: red;">' . $_GET['delete_msg'] . '</h4>';
+        }
+        ?>
 
         <section class="doctor-list-section">
-            <h2 class="montserrat-font">All Doctors</h2>
+            <h2 class="montserrat-font section-title">All Doctors</h2>
             <table class="doctor-table">
                 <thead>
                     <tr>
-                        <th>Serial</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th>SL</th>
+                        <th>Full Name</th>
                         <th>Phone</th>
                         <th>Email</th>
-                        <th>Date of Birth</th>
-                        <th>Gender</th>
-                        <th>Country</th>
+                        <th>DOJ</th>
+                        <th>Degree</th>
+                        <th>Specialist</th>
                         <th>Salary</th>
+                        <th>Password</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Asif</td>
-                        <td>Sayed</td>
-                        <td>0123456789</td>
-                        <td>asif@example.com</td>
-                        <td>1985-03-12</td>
-                        <td>Male</td>
-                        <td>Bangladesh</td>
-                        <td>$2000</td>
-                        <td>
-                            <button class="edit-btn">Edit</button>
-                            <button class="delete-btn">Remove</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Abdullah</td>
-                        <td>Al Fahad</td>
-                        <td>0987654321</td>
-                        <td>abdullah@example.com</td>
-                        <td>1980-07-21</td>
-                        <td>Male</td>
-                        <td>Bangladesh</td>
-                        <td>$1800</td>
-                        <td>
-                            <button class="edit-btn">Edit</button>
-                            <button class="delete-btn">Remove</button>
-                        </td>
-                    </tr>
+                    <?php
+
+                    $sql = "SELECT * FROM doctors_info ORDER BY id ASC";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        $serial = 1;
+                        while ($row = $result->fetch_assoc()) {
+                            $fullName = $row['fname'] . ' ' . $row['lname'];
+                            echo "<tr>
+                            <td>{$serial}</td>
+                            <td>{$fullName}</td>
+                            <td>{$row['phone']}</td>
+                            <td>{$row['email']}</td>
+                            <td>{$row['doj']}</td>
+                            <td>{$row['degree']}</td>
+                            <td>{$row['specialist']}</td>
+                            <td>{$row['salary']}</td>
+                            <td>{$row['password']}</td>
+                            <td>
+                                <a href='update_doctor.php?id={$row['id']}' class='edit-btn'>Update</a>
+                                <a href='delete_doctor.php?id={$row['id']}' class='edit-btn'>Delete</a>
+                            </td>
+                        </tr>";
+                            $serial++;
+                        }
+                    } else {
+                        echo "<tr><td colspan='14' style='text-align:center;'>No patients found</td></tr>";
+                    }
+
+                    $conn->close();
+                    ?>
                 </tbody>
             </table>
         </section>
     </main>
 
-    <footer class="footer montserrat-font">
-        <section class="footer-container display-flex">
-            <div class="footer-section left">
-                <h3>More Info</h3>
-                <ul>
-                    <li><a href="">About Us</a></li>
-                    <li><a href="">Services</a></li>
-                    <li><a href="">Careers</a></li>
-                    <li><a href="">FAQ</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section center">
-                <h3>Find Us</h3>
-                <img src="..\..\image/footer/map1.png" alt="Google Map">
-                <p class="copyright">© 2025 Health Care Hospital. All Rights Reserved.</p>
-            </div>
-
-            <div class="footer-section right">
-                <h3>Contact Info</h3>
-                <p>+8801XXXXXXXXX</p>
-                <p>healthcarehospital@clinic.com</p>
-                <div class="social-links">
-                    <a href=""><img src="..\..\image/footer/icon_fb.png" alt="facebook"></a>
-                    <a href=""><img src="..\..\image/footer/icon_instagram.png" alt="instagram"></a>
-                    <a href=""><img src="..\..\image/footer/icon_LN.png" alt="linkedin"></a>
-                    <a href=""><img src="..\..\image/footer/icon_x.png" alt="x"></a>
-                </div>
-            </div>
-        </section>
-    </footer>
+    <footer> <?php include 'admin_footer.php'; ?> </footer>
 </body>
 
 </html>

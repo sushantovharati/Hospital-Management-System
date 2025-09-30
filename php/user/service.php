@@ -13,25 +13,7 @@
 
 <body class="bg-color">
 
-    <header>
-        <div class="navbar-container">
-            <nav class="navbar montserrat-font display-flex">
-                <div class="brand display-flex">
-                    <img class="brand-logo" src="../../image/main.ico" alt="Health Care Hospital Logo">
-                    <h3 class="brand-name">Health Care Hospital</h3>
-                </div>
-                <ul class="nav-links display-flex">
-                    <li class="nav-item"><a href="../../index.php" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="findDoctors.php" class="nav-link">Doctors</a></li>
-                    <li class="nav-item"><a href="departments.php" class="nav-link">Departments</a></li>
-                    <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="contactUs.php" class="nav-link">Contact Us</a></li>
-                    <li class="nav-item"><a href="services.php" class="nav-link active">Services</a></li>
-                    <li class="nav-item"><a href="careers.php" class="nav-link">Careers</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <header> <?php include 'user_header.php'; ?> </header>
 
     <main class="main-section">
         <section class="text-section">
@@ -111,37 +93,7 @@
         </section>
     </main>
 
-    <footer class="footer montserrat-font">
-        <section class="footer-container display-flex">
-            <div class="footer-section left">
-                <h3>More Info</h3>
-                <ul>
-                    <li><a href="about.php">About Us</a></li>
-                    <li><a href="service.php">Services</a></li>
-                    <li><a href="career.php">Careers</a></li>
-                    <li><a href="faq.php">FAQ</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section center">
-                <h3>Find Us</h3>
-                <img src="../../image/footer/map1.png" alt="Google Map">
-                <p class="copyright">© 2025 Health Care Hospital. All Rights Reserved.</p>
-            </div>
-
-            <div class="footer-section right">
-                <h3>Contact Info</h3>
-                <p>+8801XXXXXXXXX</p>
-                <p>healthcare.hospital@clinic.com</p>
-                <div class="social-links">
-                    <a href=""><img src="../../image/footer/icon_fb.png" alt="facebook"></a>
-                    <a href=""><img src="../../image/footer/icon_instagram.png" alt="instagram"></a>
-                    <a href=""><img src="../../image/footer/icon_LN.png" alt="linkedin"></a>
-                    <a href=""><img src="../../image/footer/icon_x.png" alt="x"></a>
-                </div>
-            </div>
-        </section>
-    </footer>
+    <footer> <?php include 'user_footer.php'; ?> </footer>
 
 </body>
 

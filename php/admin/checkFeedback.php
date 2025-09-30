@@ -5,31 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Check Feedback | Health Care Hospital</title>
-  <link rel="stylesheet" href="..\..\css/common/base.css">
-    <link rel="stylesheet" href="..\..\css/common/nav.css">
-    <link rel="stylesheet" href="..\..\css/common/footer_h.css">
-  <link rel="stylesheet" href="..\..\css/admin/checkFeedback.css">
+  <link rel="stylesheet" href="../../css/common/base.css">
+  <link rel="stylesheet" href="../../css/admin/checkFeedback.css">
 </head>
 
 <body>
-  <header>
-        <div class="navbar-container">
-            <nav class="navbar montserrat-font display-flex">
-                <div class="brand display-flex">
-                    <img class="brand-logo" src="..\..\image/main.ico" alt="Health Care Hospital Logo">
-                    <h3 class="brand-name">Health Care Hospital</h3>
-                </div>
-                <ul class="nav-links display-flex">
-                    <li class="nav-item"><a href="adminDashboard.php" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="addPatient.php" class="nav-link">Patients</a></li>
-                    <li class="nav-item"><a href="addDoctor.php" class="nav-link">Doctors</a></li>
-                    <li class="nav-item"><a href="resources.php" class="nav-link">Resources</a></li>
-                    <li class="nav-item"><a href="checkFeedback.php" class="nav-link">Check Feedback</a></li>
-                    <li class="nav-item"><a href="../../index.php" class="nav-link">Logout</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <header> <?php include 'admin_header.php'; ?> </header>
+
   <main class="main-section admin-feedback">
     <h1>Patient Feedback Management</h1>
     <p>Here you can review and manage patient feedbacks.</p>
@@ -71,6 +53,8 @@
     </table>
   </main>
 
+  <footer> <?php include 'admin_footer.php'; ?> </footer>
+  
 </body>
 
 </html>

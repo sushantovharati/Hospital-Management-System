@@ -1,4 +1,3 @@
-
 document.getElementById("find-a-doctor").addEventListener("click", function () {
     window.location.href = "php/user/findDoctors.php";
 });

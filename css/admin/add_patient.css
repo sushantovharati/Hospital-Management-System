@@ -1,27 +1,34 @@
-.main-section > h2 {
-    font-size: 30px;
-    margin: 15px 0px 20px 0px;
+.section-title {
+    font-size: 45px;
+    padding: 10px;
+    text-align: center;
 }
 
-.add-patient {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+.form-container {
+    margin: 0px 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    column-gap: 30px;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+.form-container > :last-child {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
 .form-group {
-    flex: 1 1 200px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 .form-group label {
     font-family: "Roboto", sans-serif;
-    font-size: 16px;
+    font-size: 20px;
     margin-bottom: 5px;
 }
 
@@ -33,14 +40,9 @@
     font-size: 15px;
 }
 
-.buttons {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 20px;
-}
-
-.buttons button {
-    width: 200px;
+#save {
+    margin-top: 10px;
+    width: 100%;
     padding: 10px 25px;
     font-size: 16px;
     border-radius: 8px;
@@ -48,10 +50,10 @@
     cursor: pointer;
     background-color: #059833;
     color: white;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
-.buttons button:hover {
+#save:hover {
     background-color: #047527;
 }
 

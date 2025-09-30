@@ -1,3 +1,15 @@
+<?php
+session_start();
+include '../db_connect.php';
+
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] != "admin") {
+    header("Location: ../user/loginForm.php");
+    exit();
+}
+
+$admin_name = $_SESSION['fname'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,59 +18,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard | Health Care Hospital</title>
     <link rel="stylesheet" href="../../css/common/base.css">
-    <link rel="stylesheet" href="../../css/common/nav.css">
-    <link rel="stylesheet" href="../../css/common/footer_h.css">
     <link rel="stylesheet" href="../../css/admin/admin_dashboard.css">
-
 </head>
 
 <body class="bg-color">
-    <header>
-        <div class="navbar-container">
-            <nav class="navbar montserrat-font display-flex">
-                <div class="brand display-flex">
-                    <img class="brand-logo" src="..\..\image/main.ico" alt="Health Care Hospital Logo">
-                    <h3 class="brand-name">Health Care Hospital</h3>
-                </div>
-                <ul class="nav-links display-flex">
-                    <li class="nav-item"><a href="adminDashboard.php" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="addPatient.php" class="nav-link">Patients</a></li>
-                    <li class="nav-item"><a href="addDoctor.php" class="nav-link">Doctors</a></li>
-                    <li class="nav-item"><a href="resources.php" class="nav-link">Resources</a></li>
-                    <li class="nav-item"><a href="checkFeedback.php" class="nav-link">Check Feedback</a></li>
-                    <li class="nav-item"><a href="../../index.php" class="nav-link">Logout</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+
+    <div class="db-query">
+        <?php
+        $totalPatient = $totalDoctor = $appointment = $revenue = "";
+
+        // get-total-patient
+        $sql = "SELECT COUNT(*) as total FROM patient";
+        $result = $conn->query($sql);
+
+        if ($result) {
+            $row = $result->fetch_assoc();
+            $totalPatient = $row['total'];
+        } else {
+            $totalPatient = "No Patient Available";
+        }
+
+        // get-total-doctor
+        $sql = "SELECT COUNT(*) as total FROM doctors_info";
+        $result = $conn->query($sql);
+
+        if ($result) {
+            $row = $result->fetch_assoc();
+            $totalDoctor = $row['total'];
+        } else {
+            $totalDoctor = "No Doctor Available";
+        }
+
+        // get-pending-appointment
+        $appointment = 120;
+
+        //get-revenue
+        $revenue = 500000;
+        ?>
+
+    </div>
+
+    <header> <?php include 'admin_header.php'; ?> </header>
 
     <main class="main-section">
         <section class="welcome-section">
-            <h1 class="welcome-title montserrat-font">
-                Welcome back, Sushanto Vharati
-            </h1>
-            <p class="welcome-description roboto-font">
-                Here's what's happening at your hospital today!
-            </p>
+            <h1 class="welcome-title montserrat-font"> Welcome back, <?php echo htmlspecialchars($admin_name); ?> </h1>
+            <p class="welcome-description roboto-font"> Here's what's happening at your hospital today! </p>
         </section>
 
         <section class="grid-list">
+
             <div class="total-patients grid-card">
                 <h3 class="montserrat-font">Total Patients</h3> <br>
-                <label class="roboto-font" for="patients">1000</label>
+                <label class="roboto-font" for="patients"><?php echo $totalPatient ?></label>
             </div>
+
             <div class="active-doctor grid-card">
                 <h3 class="montserrat-font">Active Doctors</h3> <br>
-                <label class="roboto-font" for="doctors">56</label>
+                <label class="roboto-font" for="doctors"><?php echo $totalDoctor ?></label>
             </div>
+
             <div class="todays-appointment grid-card">
                 <h3 class="montserrat-font">Today's Appointments</h3> <br>
-                <label class="roboto-font" for="appointment">120</label> <br>
-                <label for="pending">25/120 pending</label>
+                <label class="roboto-font" for="appointment"><?php echo $appointment ?></label> <br>
+                <label for="pending">25/<?php echo $appointment ?> pending</label>
             </div>
             <div class="monthly-revenue grid-card">
                 <h3 class="montserrat-font">This Month's Revenue</h3> <br>
-                <label class="roboto-font" for="revenue">500000</label>
+                <label class="roboto-font" for="revenue"><?php echo $revenue ?> TK.</label>
             </div>
         </section>
 
@@ -125,45 +152,18 @@
         <section class="quick-access">
             <h1>Quick Access</h1>
             <div class="quick-buttons">
-                <button class="add-doc">Add Patient</button>
-                <button class="add-doc">Add Doctor</button>
-                <button class="add-doc">View Resources</button>
-                <button class="add-doc">Check Feedback</button>
+                <button id="add-patient-btn" class="btn">Add Patient</button>
+                <button id="add-doctor-btn" class="btn">Add Doctor</button>
+                <button id="view-resources-btn" class="btn">View Resources</button>
+                <button id="check-feedback-btn" class="btn">Check Feedback</button>
             </div>
         </section>
     </main>
 
-    <footer class="footer montserrat-font">
-        <section class="footer-container display-flex">
-            <div class="footer-section left">
-                <h3>More Info</h3>
-                <ul>
-                    <li><a href="">About Us</a></li>
-                    <li><a href="">Services</a></li>
-                    <li><a href="">Careers</a></li>
-                    <li><a href="">FAQ</a></li>
-                </ul>
-            </div>
+    <footer> <?php include 'admin_footer.php'; ?> </footer>
 
-            <div class="footer-section center">
-                <h3>Find Us</h3>
-                <img src="..\..\image/footer/map1.png" alt="Google Map">
-                <p class="copyright">© 2025 Health Care Hospital. All Rights Reserved.</p>
-            </div>
+    <script src="../../js/admin/admin_dashboard.js"></script>
 
-            <div class="footer-section right">
-                <h3>Contact Info</h3>
-                <p>+8801XXXXXXXXX</p>
-                <p>healthcarehospital@clinic.com</p>
-                <div class="social-links">
-                    <a href=""><img src="..\..\image/footer/icon_fb.png" alt="facebook"></a>
-                    <a href=""><img src="..\..\image/footer/icon_instagram.png" alt="instagram"></a>
-                    <a href=""><img src="..\..\image/footer/icon_LN.png" alt="linkedin"></a>
-                    <a href=""><img src="..\..\image/footer/icon_x.png" alt="x"></a>
-                </div>
-            </div>
-        </section>
-    </footer>
 </body>
 
 </html>

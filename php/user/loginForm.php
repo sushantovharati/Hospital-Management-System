@@ -1,3 +1,8 @@
+<?php
+session_start();
+include '../db_connect.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,56 +11,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Health Care Hospital/Login</title>
     <link rel="stylesheet" href="../../css/common/base.css">
-    <link rel="stylesheet" href="../../css/common/nav.css">
-    <link rel="stylesheet" href="../../css/common/footer_h.css">
     <link rel="stylesheet" href="../../css/user/login.css">
 
 </head>
 
 <body class="bg-color">
-    <?php
-    $usernameErr = $passwordErr = "";
-    $username = $password = "";
+    <div class="login-validation">
+        <?php
+        $username = $password = "";
+        $usernameErr = $passwordErr = $loginErr = "";
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (empty($_POST["username"])) {
-            $usernameErr = "*Username is required";
-        } else {
-            $username = test_input($_POST["username"]);
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (empty($_POST["username"])) {
+                $usernameErr = "*Email or phone is required";
+            } else {
+                $username = trim($_POST["username"]);
+            }
+
+            if (empty($_POST["password"])) {
+                $passwordErr = "*Password is required";
+            } else {
+                $password = $_POST["password"];
+            }
+
+            if (empty($usernameErr) && empty($passwordErr)) {
+                $sql = " SELECT id, password, fname, 'user' as role FROM user WHERE email=? OR phone=? UNION SELECT id, password, fname, 'admin' as role FROM admin WHERE email=? OR phone=? UNION SELECT id, password, fname, 'doctor' as role FROM doctor WHERE email=? OR phone=? LIMIT 1 ";
+
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("ssssss", $username, $username, $username, $username, $username, $username);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if ($row = $result->fetch_assoc()) {
+                    if ($password === $row['password']) {
+                        $_SESSION['user_id'] = $row['id'];
+                        $_SESSION['fname'] = $row['fname'];
+                        $_SESSION['role'] = $row['role'];
+
+                        if ($row['role'] == "user") {
+                            header("Location: ../../index.php");
+                        } elseif ($row['role'] == "admin") {
+                            header("Location: ../admin/adminDashboard.php");
+                        } else {
+                            header("Location: ../doctor/doctorDashboard.php");
+                        }
+                        exit();
+                    } else {
+                        $loginErr = "Incorrect password";
+                    }
+                } else {
+                    $loginErr = "User not found";
+                }
+                $stmt->close();
+            }
         }
 
-        if (empty($_POST["password"])) {
-            $passwordErr = "*Password is required";
-        }
-    }
+        ?>
+    </div>
 
-    function test_input($data)
-    {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
-
-    ?>
-    <header>
-        <div class="navbar-container">
-            <nav class="navbar montserrat-font display-flex">
-                <div class="brand display-flex">
-                    <img class="brand-logo" src="..\..\image/main.ico" alt="Health Care Hospital Logo">
-                    <h3 class="brand-name">Health Care Hospital</h3>
-                </div>
-                <ul class="nav-links display-flex">
-                    <li class="nav-item"><a href="..\..\index.php" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="findDoctors.php" class="nav-link">Doctors</a></li>
-                    <li class="nav-item"><a href="departments.php" class="nav-link">Departments</a></li>
-                    <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="contactUs.php" class="nav-link">Contact Us</a></li>
-                    <li class="nav-item"><a href="loginForm.php" class="nav-link">Login</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <header> <?php include 'user_header.php'; ?> </header>
 
     <main class="main-section">
         <form class="form-content" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
@@ -77,7 +91,7 @@
             </div>
 
             <div>
-                <a class="forgot-password" href="">Forgot Password?</a>
+                <a class="forgot-password" href="forgot_password.php">Forgot Password?</a>
             </div>
 
             <div>
@@ -93,37 +107,8 @@
         </form>
     </main>
 
-    <footer class="footer montserrat-font">
-        <section class="footer-container display-flex">
-            <div class="footer-section left">
-                <h3>More Info</h3>
-                <ul>
-                    <li><a href="about.php">About Us</a></li>
-                    <li><a href="service.php">Services</a></li>
-                    <li><a href="career.php">Careers</a></li>
-                    <li><a href="faq.php">FAQ</a></li>
-                </ul>
-            </div>
+    <footer> <?php include 'user_footer.php'; ?> </footer>
 
-            <div class="footer-section center">
-                <h3>Find Us</h3>
-                <img src="../../image/footer/map1.png" alt="Google Map">
-                <p class="copyright">© 2025 Health Care Hospital. All Rights Reserved.</p>
-            </div>
-
-            <div class="footer-section right">
-                <h3>Contact Info</h3>
-                <p>+8801XXXXXXXXX</p>
-                <p>healthcare.hospital@clinic.com</p>
-                <div class="social-links">
-                    <a href=""><img src="../../image/footer/icon_fb.png" alt="facebook"></a>
-                    <a href=""><img src="../../image/footer/icon_instagram.png" alt="instagram"></a>
-                    <a href=""><img src="../../image/footer/icon_LN.png" alt="linkedin"></a>
-                    <a href=""><img src="../../image/footer/icon_x.png" alt="x"></a>
-                </div>
-            </div>
-        </section>
-    </footer>
 </body>
 
 </html>

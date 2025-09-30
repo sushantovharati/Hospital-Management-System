@@ -1,3 +1,10 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+include 'php/db_connect.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,8 +32,17 @@
                     <li class="nav-item"><a href="php/user/departments.php" class="nav-link">Departments</a></li>
                     <li class="nav-item"><a href="php/user/about.php" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="php/user/contactUs.php" class="nav-link">Contact Us</a></li>
-                    <li class="nav-item"><a href="php/user/loginForm.php" class="nav-link">Login</a></li>
+
+                    <?php
+                    if (isset($_SESSION['user_id'])) {
+                        echo '<li class="nav-item"><a href="php/user/logout.php" class="nav-link">Logout</a></li>';
+                    } else {
+                        echo '<li class="nav-item"><a href="php/user/loginForm.php" class="nav-link">Login</a></li>';
+                    }
+                    ?>
+
                 </ul>
+
             </nav>
         </div>
     </header>
