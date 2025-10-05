@@ -23,7 +23,7 @@ include '../db_connect.php';
 
             <div class="departments-container">
                 <?php
-                $sql = "SELECT department_name, department_desc FROM department_info ORDER BY department_name ASC";
+                $sql = "SELECT department_name, department_desc FROM departments_info ORDER BY department_name ASC";
                 $result = $conn->query($sql);
 
                 if ($result && $result->num_rows > 0) {

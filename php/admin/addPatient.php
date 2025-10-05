@@ -14,9 +14,9 @@
     <div class="form-validation-php">
         <?php
 
-        $fnameErr = $lnameErr = $phoneErr = $emailErr = $dobErr = $genderErr = $addressErr = $diseaseErr = $doctorErr = $admissionErr = $roomErr = $bedErr = "";
+        $fnameErr = $lnameErr = $phoneErr = $emailErr = $dobErr = $genderErr = $addressErr = $diseaseErr = $departmentErr = $doctorErr = $admissionErr = $roomErr = "";
 
-        $fname = $lname = $phone = $email = $dob = $gender = $address = $disease = $doctor = $admission = $room = $bed = "";
+        $fname = $lname = $phone = $email = $dob = $gender = $address = $disease = $department = $doctor = $admission = $room = "";
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -47,9 +47,7 @@
                 }
             }
 
-            if (empty($_POST["email"])) {
-                $emailErr = "*Email is required";
-            } else {
+            if (!empty($_POST["email"])) {
                 $email = test_input($_POST["email"]);
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $emailErr = "*Invalid email format";
@@ -60,7 +58,11 @@
                 $dobErr = "*Date of Birth is required";
             } else {
                 $dob = test_input($_POST["dob"]);
+                if (strtotime($dob) > strtotime(date("Y-m-d"))) {
+                    $dobErr = "*Date of Birth cannot be in the future";
+                }
             }
+
 
             if (empty($_POST["gender"])) {
                 $genderErr = "*Gender is required";
@@ -83,6 +85,12 @@
                 }
             }
 
+            if (empty($_POST["department_id"])) {
+                $departmentErr = "*Please select a department";
+            } else {
+                $department_id = test_input($_POST["department_id"]);
+            }
+
             if (empty($_POST["doctor"])) {
                 $doctorErr = "*Assigned doctor is required";
             } else {
@@ -96,18 +104,15 @@
                 $admissionErr = "*Admission date is required";
             } else {
                 $admission = $_POST["admission"];
+                if (strtotime($admission) < strtotime(date("Y-m-d"))) {
+                    $admissionErr = "*Admission date cannot be in the past";
+                }
             }
 
             if (empty($_POST["room"])) {
                 $roomErr = "*Room number is required";
             } else {
                 $room = test_input($_POST["room"]);
-            }
-
-            if (empty($_POST["bed"])) {
-                $bedErr = "*Bed number is required";
-            } else {
-                $bed = test_input($_POST["bed"]);
             }
         }
 
@@ -120,14 +125,14 @@
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($fnameErr) && empty($lnameErr) && empty($phoneErr) && empty($emailErr) && empty($dobErr) && empty($genderErr) && empty($addressErr) && empty($diseaseErr) && empty($doctorErr) && empty($admissionErr) && empty($roomErr) && empty($bedErr)) {
+            if (empty($fnameErr) && empty($lnameErr) && empty($phoneErr) && empty($emailErr) && empty($dobErr) && empty($genderErr) && empty($addressErr) && empty($diseaseErr) && empty($doctorErr) && empty($admissionErr) && empty($roomErr) && empty($departmentErr)) {
 
-                $stmt = $conn->prepare("INSERT INTO patient (fname, lname, phone, email, dob, gender, address, disease, doctor, admission, room, bed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt = $conn->prepare("INSERT INTO patient (fname, lname, phone, email, dob, gender, address, disease, department_id, doctor, admission, room) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-                $stmt->bind_param("ssssssssssss", $fname, $lname, $phone, $email, $dob, $gender, $address, $disease, $doctor, $admission, $room, $bed);
+                $stmt->bind_param("ssssssssisss", $fname, $lname, $phone, $email, $dob, $gender, $address, $disease, $department_id, $doctor, $admission, $room);
 
                 if ($stmt->execute()) {
-                    $fname = $lname = $phone = $email = $dob = $gender = $address = $disease = $doctor = $admission = $room = $bed = "";
+                    $fname = $lname = $phone = $email = $dob = $gender = $address = $disease = $doctor = $admission = $room = $department_id = "";
                 } else {
                     echo "<p style='color:red;'>Error: " . $stmt->error . "</p>";
                 }
@@ -140,7 +145,7 @@
     <header> <?php include 'admin_header.php'; ?> </header>
 
     <main class="main-section">
-        <h2 class="montserrat-font section-title">Add New Patient</h2>
+        <h2 class="montserrat-font section-title">Admit New Patient</h2>
         <form class="form-container" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 
             <div class="form-group">
@@ -206,14 +211,34 @@
             </div>
 
             <div class="form-group">
-                <label for="doctor">Assigned Doctor</label>
-                <input type="text" name="doctor" placeholder="Doctor name" value="<?php echo $doctor; ?>">
-                <span class="error"><?php echo $doctorErr; ?></span>
+                <label for="department">Select Department</label>
+                <select name="department_id" id="department_id">
+                    <option value="" disabled selected>Select Department</option>
+                    <?php
+                    $query = "SELECT department_id, department_name FROM departments_info ORDER BY department_name ASC";
+                    $result = mysqli_query($conn, $query);
+
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<option value="' . $row['department_id'] . '">' . $row['department_name'] . '</option>';
+                    }
+                    ?>
+                </select>
+                <span class="error"><?php echo $departmentErr; ?></span>
             </div>
 
             <div class="form-group">
-                <label for="admission">Admission Date</label>
-                <input type="date" name="admission" value="<?php echo $admission; ?>">
+                <label for="doctor">Assigned Doctor</label>
+                <input type="text" id="doctor" name="doctor" placeholder="Doctor name"
+                    value="<?php echo $doctor; ?>" onkeyup="showResult(this.value)" autocomplete="off">
+                <div id="livesearch"></div>
+                <span class="error"><?php echo $doctorErr; ?></span>
+            </div>
+
+
+            <div class="form-group">
+                <label for="admission">Date of Admit</label>
+                <input type="date" name="admission"
+                    value="<?php echo !empty($admission) ? $admission : date('Y-m-d'); ?>">
                 <span class="error"><?php echo $admissionErr; ?></span>
             </div>
 
@@ -223,41 +248,33 @@
                 <span class="error"><?php echo $roomErr; ?></span>
             </div>
 
-            <div class="form-group">
-                <label for="bed">Bed No</label>
-                <input type="text" id="bed" name="bed" placeholder="Enter bed no" value="<?php echo $bed; ?>">
-                <span class="error"><?php echo $bedErr; ?></span>
-            </div>
-
             <input type="submit" class="save button" id="save" value="Save" name="submit">
 
         </form>
 
-        <?php
-        if (isset($_GET['update_msg'])) {
-            echo '<h4 style="color: green;">' . $_GET['update_msg'] . '</h4>';
-        }
-        if (isset($_GET['delete_msg'])) {
-            echo '<h4 style="color: red;">' . $_GET['delete_msg'] . '</h4>';
-        }
-        ?>
-
         <section class="patient-list-section">
-            <h2 class="montserrat-font">All Patients</h2>
+            <h2 class="montserrat-font section-title">All Patients</h2>
+
+            <?php
+            if (isset($_GET['update_msg'])) {
+                echo '<h4 style="color: green;">' . $_GET['update_msg'] . '</h4>';
+            }
+            if (isset($_GET['delete_msg'])) {
+                echo '<h4 style="color: red;">' . $_GET['delete_msg'] . '</h4>';
+            }
+            ?>
+
             <table class="patient-table">
                 <thead>
                     <tr>
-                        <th>Serial</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th>SL</th>
+                        <th>Full Name</th>
                         <th>Phone</th>
-                        <th>Email</th>
-                        <th>DOB</th>
+                        <th>DoB</th>
                         <th>Gender</th>
-                        <th>Address</th>
                         <th>Disease</th>
                         <th>Doctor</th>
-                        <th>Admission Date</th>
+                        <th>Date of Admit</th>
                         <th>Room</th>
                         <th>Bed</th>
                         <th>Actions</th>
@@ -272,15 +289,13 @@
                     if ($result->num_rows > 0) {
                         $serial = 1;
                         while ($row = $result->fetch_assoc()) {
+                            $fullName = $row['fname'] . ' ' . $row['lname'];
                             echo "<tr>
                             <td>{$serial}</td>
-                            <td>{$row['fname']}</td>
-                            <td>{$row['lname']}</td>
+                            <td>{$fullName}</td>
                             <td>{$row['phone']}</td>
-                            <td>{$row['email']}</td>
                             <td>{$row['dob']}</td>
                             <td>{$row['gender']}</td>
-                            <td>{$row['address']}</td>
                             <td>{$row['disease']}</td>
                             <td>{$row['doctor']}</td>
                             <td>{$row['admission']}</td>
@@ -288,7 +303,7 @@
                             <td>{$row['bed']}</td>
                             <td>
                                 <a href='update_patient.php?id={$row['id']}' class='edit-btn'>Update</a>
-                                <a href='delete_patient.php?id={$row['id']}' class='edit-btn'>Delete</a>
+                                <a href='delete_patient.php?id={$row['id']}' class='delete-btn'>Delete</a>
                             </td>
                         </tr>";
                             $serial++;
@@ -306,6 +321,30 @@
     </main>
 
     <footer> <?php include 'admin_footer.php'; ?> </footer>
+
+    <script>
+        function showResult(str) {
+            if (str.length == 0) {
+                document.getElementById("livesearch").innerHTML = "";
+                document.getElementById("livesearch").style.display = "none";
+                return;
+            }
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("livesearch").innerHTML = this.responseText;
+                    document.getElementById("livesearch").style.display = "block";
+                }
+            }
+            xmlhttp.open("GET", "livesearch.php?q=" + str, true);
+            xmlhttp.send();
+        }
+
+        function setDoctor(name) {
+            document.getElementById("doctor").value = name;
+            document.getElementById("livesearch").style.display = "none";
+        }
+    </script>
 
 </body>
 

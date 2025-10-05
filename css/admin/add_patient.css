@@ -61,11 +61,6 @@
     margin-top: 40px;
 }
 
-.patient-list-section h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
 .patient-table {
     width: 100%;
     border-collapse: collapse;
@@ -109,9 +104,15 @@
     background-color: #0096c7;
 }
 
-/* Patient Table - Action Buttons */
+.patient-table a{
+    text-decoration: none;
+}
+
 .patient-table .edit-btn {
     background-color: #28a745;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 .patient-table .edit-btn:hover {
@@ -120,8 +121,44 @@
 
 .patient-table .delete-btn {
     background-color: #dc3545;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 .patient-table .delete-btn:hover {
     background-color: #c82333;
+}
+
+/* #doctor {
+    position: relative;
+    z-index: 1;
+} */
+
+#livesearch {
+    position: absolute;
+    top: calc(83% - 5px);
+    left: calc(10% + 65px);
+    right: 0;
+    width: 520px; 
+    background: #fff;
+    border: 1px solid #A5ACB2;
+    border-top: none;   
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 9999;
+    display: none;  
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 0 0 8px 8px;
+}
+
+#livesearch p {
+    margin: 0;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+#livesearch p:hover {
+    background-color: #f0f0f0;
 }

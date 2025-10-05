@@ -21,7 +21,7 @@
             </div>
 
             <div class="searching-section display-flex">
-                <input type="text" name="doctor-name" id="dorcot-name" placeholder="Search by doctor name">
+                <input type="text" name="doctorName" id="doctorName" placeholder="Search by doctor name">
                 <select name="doctor-department" id="doctor-department">
                     <option value="selectdepartment">Select Department</option>
                     <option value="Cardiologist">Cardiologist</option>

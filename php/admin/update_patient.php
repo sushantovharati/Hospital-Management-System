@@ -8,8 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Patient | Health Care Hospital</title>
     <link rel="stylesheet" href="../../css/common/base.css">
-    <link rel="stylesheet" href="../../css/common/nav.css">
-    <link rel="stylesheet" href="../../css/common/footer_h.css">
     <link rel="stylesheet" href="../../css/admin/add_patient.css">
 </head>
 
@@ -48,13 +46,11 @@
             } else {
                 $phone = test_input($_POST["phone"]);
                 if (!preg_match("/^[0-9]{11}$/", $phone)) {
-                    $phoneErr = "*Invalid phone number";
+                    $phoneErr = "*Invalid phone number(must be 11 digits)";
                 }
             }
 
-            if (empty($_POST["email"])) {
-                $emailErr = "*Email is required";
-            } else {
+            if (!empty($_POST["email"])) {
                 $email = test_input($_POST["email"]);
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $emailErr = "*Invalid email format";
@@ -125,18 +121,12 @@
         }
         ?>
         <?php
-        
-        ?>
 
-        <?php
-        if (isset($_POST['update'])) {
-        }
         ?>
     </div>
 
     <div class="db-section">
         <?php
-        // To set the db values in the text fields
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
 
@@ -150,7 +140,6 @@
             }
         }
 
-        // update button press action
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($fnameErr) && empty($lnameErr) && empty($phoneErr) && empty($emailErr) && empty($dobErr) && empty($genderErr) && empty($addressErr) && empty($diseaseErr) && empty($doctorErr) && empty($admissionErr) && empty($roomErr) && empty($bedErr)) {
 
@@ -169,103 +158,104 @@
 
         ?>
     </div>
-<header> <?php include 'admin_header.php'; ?> </header>
+
+    <header> <?php include 'admin_header.php'; ?> </header>
 
     <main class="main-section">
-        <h2 class="montserrat-font">Add New Patient</h2>
-        <form class="form-contain" method="post" action="update_patient.php?id=<?php echo $row['id']; ?>">
+        
+        <h2 class="montserrat-font section-title">Update Patient Details</h2>
 
-            <div class="add-patient">
+        <form class="form-container" method="post" action="update_patient.php?id=<?php echo $row['id']; ?>">
 
-                <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+            <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
 
-                <div class="form-group">
-                    <label for="fname">First Name</label>
-                    <input type="text" name="fname" id="fname" value="<?php echo $row['fname']; ?>" placeholder="Enter your first name">
-                    <span class="error"><?php echo $fnameErr; ?></span>
-                </div>
-
-                <div class="form-group">
-                    <label for="lname">Last Name</label>
-                    <input type="text" name="lname" id="lname" value="<?php echo $row['lname']; ?>" placeholder="Enter your last name">
-                    <span class="error"><?php echo $lnameErr; ?></span>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Phone No</label>
-                    <input type="text" name="phone" id="phone" value="<?php echo $row['phone']; ?>" placeholder="Enter your phone number">
-                    <span class="error"><?php echo $phoneErr; ?></span>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" name="email" id="email" value="<?php echo $row['email']; ?>" placeholder="you@email.com">
-                    <span class="error"><?php echo $emailErr; ?></span>
-                </div>
-
-                <div class="form-group">
-                    <label for="dob">Date of Birth</label>
-                    <input type="date" name="dob" id="dob" value="<?php echo $row['dob']; ?>">
-                    <span class="error"><?php echo $dobErr; ?></span>
-                </div>
-
-                <div class="form-group">
-                    <label for="gender">Gender</label>
-                    <select name="gender" id="gender">
-                        <option value="male" <?php if ($row['gender'] == "male") echo "selected"; ?>>Male</option>
-                        <option value="female" <?php if ($row['gender'] == "female") echo "selected"; ?>>Female</option>
-                        <option value="other" <?php if ($row['gender'] == "other") echo "selected"; ?>>Other</option>
-                    </select>
-                    <span class="error"><?php echo $genderErr; ?></span>
-                </div>
-
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <textarea name="address" id="address" placeholder="House no, Road no, Thana, District"><?php echo $row['address']; ?></textarea>
-                    <span class="error"><?php echo $addressErr; ?></span>
-                </div>
-
-                <div class="form-group">
-                    <label for="disease">Disease</label>
-                    <input type="text" name="disease" placeholder="Enter disease/problem" value="<?php echo $row['disease']; ?>">
-                    <span class="error"><?php echo $diseaseErr; ?></span>
-                </div>
-
-                <div class="form-group">
-                    <label for="doctor">Assigned Doctor</label>
-                    <input type="text" name="doctor" placeholder="Doctor name" value="<?php echo $row['doctor']; ?>">
-                    <span class="error"><?php echo $doctorErr; ?></span>
-                </div>
-
-                <div class="form-group">
-                    <label for="admission">Admission Date</label>
-                    <input type="date" name="admission" value="<?php echo $row['admission']; ?>" readonly>
-                    <span class="error"><?php echo $admissionErr; ?></span>
-                </div>
-
-                <div class="form-group">
-                    <label for="room">Room No</label>
-                    <input type="text" id="room" name="room" placeholder="Enter room no" value="<?php echo $row['room']; ?>">
-                    <span class="error"><?php echo $roomErr; ?></span>
-                </div>
-
-                <div class="form-group">
-                    <label for="bed">Bed No</label>
-                    <input type="text" id="bed" name="bed" placeholder="Enter bed no" value="<?php echo $row['bed']; ?>">
-                    <span class="error"><?php echo $bedErr; ?></span>
-                </div>
+            <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" name="fname" id="fname" value="<?php echo $row['fname']; ?>" placeholder="Enter your first name">
+                <span class="error"><?php echo $fnameErr; ?></span>
             </div>
 
-            <div class="buttons display-flex">
-                <input type="submit" class="update button" id="update" value="Update" name="update">
+            <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" name="lname" id="lname" value="<?php echo $row['lname']; ?>" placeholder="Enter your last name">
+                <span class="error"><?php echo $lnameErr; ?></span>
             </div>
+
+            <div class="form-group">
+                <label for="phone">Phone No</label>
+                <input type="text" name="phone" id="phone" value="<?php echo $row['phone']; ?>" placeholder="Enter your phone number">
+                <span class="error"><?php echo $phoneErr; ?></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" value="<?php echo $row['email']; ?>" placeholder="you@email.com">
+                <span class="error"><?php echo $emailErr; ?></span>
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" name="dob" id="dob" value="<?php echo $row['dob']; ?>">
+                <span class="error"><?php echo $dobErr; ?></span>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select name="gender" id="gender">
+                    <option value="male" <?php if ($row['gender'] == "male") echo "selected"; ?>>Male</option>
+                    <option value="female" <?php if ($row['gender'] == "female") echo "selected"; ?>>Female</option>
+                    <option value="other" <?php if ($row['gender'] == "other") echo "selected"; ?>>Other</option>
+                </select>
+                <span class="error"><?php echo $genderErr; ?></span>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" name="address" id="address"
+                    placeholder="Example: house no, road no, thana, district"
+                    value="<?php echo $row['address']; ?>">
+                <span class="error"><?php echo $addressErr; ?></span>
+            </div>
+
+
+            <div class="form-group">
+                <label for="disease">Disease</label>
+                <input type="text" name="disease" placeholder="Enter disease/problem" value="<?php echo $row['disease']; ?>">
+                <span class="error"><?php echo $diseaseErr; ?></span>
+            </div>
+
+            <div class="form-group">
+                <label for="doctor">Assigned Doctor</label>
+                <input type="text" name="doctor" placeholder="Doctor name" value="<?php echo $row['doctor']; ?>">
+                <span class="error"><?php echo $doctorErr; ?></span>
+            </div>
+
+            <div class="form-group">
+                <label for="admission">Admission Date</label>
+                <input type="date" name="admission" value="<?php echo $row['admission']; ?>" readonly>
+                <span class="error"><?php echo $admissionErr; ?></span>
+            </div>
+
+            <div class="form-group">
+                <label for="room">Room No</label>
+                <input type="text" id="room" name="room" placeholder="Enter room no" value="<?php echo $row['room']; ?>">
+                <span class="error"><?php echo $roomErr; ?></span>
+            </div>
+
+            <div class="form-group">
+                <label for="bed">Bed No</label>
+                <input type="text" id="bed" name="bed" placeholder="Enter bed no" value="<?php echo $row['bed']; ?>">
+                <span class="error"><?php echo $bedErr; ?></span>
+            </div>
+
+            <input type="submit" class="save button" id="save" value="Save" name="submit">
 
         </form>
 
     </main>
 
     <footer> <?php include 'admin_footer.php'; ?> </footer>
-    
+
 </body>
 
 </html>
