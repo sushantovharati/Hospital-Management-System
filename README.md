@@ -56,7 +56,7 @@ The system allows doctors and admins to handle patient records, schedule appoint
    **Email:** 22-49535-3@student.aiub.edu
    **Institution:** American International University-Bangladesh (AIUB)
 
-## Project Information:
+# Project Information:
 **Course:** Web Technologies  
 **Instructor:** WAHIDUL ALAM RIYAD (wahid.riyad@aiub.edu)  
 **Semester:** Summer 2025  
